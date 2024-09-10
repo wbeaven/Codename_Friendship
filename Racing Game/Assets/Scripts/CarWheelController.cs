@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CarWheelController : MonoBehaviour
 {
+    // General variables
+    [SerializeField] float wheelRadius = 0f;
+    private bool rayHit;
+
     // Suspension variables
     [SerializeField] float springStrength = 100f;
     [SerializeField] float springDamping = 10f;
@@ -11,7 +15,11 @@ public class CarWheelController : MonoBehaviour
 
     private void Update()
     {
-        
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, wheelRadius))
+            rayhit;
+        else
+            !rayHit;
     }
 
 
