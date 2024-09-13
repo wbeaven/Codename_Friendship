@@ -7,6 +7,7 @@ public class CarWheelController : MonoBehaviour
     // General variables
     [SerializeField] float wheelRadius = 0f;
     [SerializeField] Transform wheelBottom;
+    [SerializeField] Transform springTop;
     [SerializeField] LayerMask groundLayer;
     private Rigidbody carRigidbody;
     private bool rayHit;
@@ -17,7 +18,7 @@ public class CarWheelController : MonoBehaviour
     //[SerializeField] Transform restPos
     [SerializeField] float springStrength = 100f;
     [SerializeField] float springDamping = 10f;
-    [SerializeField] float restDistance;
+    /*[SerializeField] */float restDistance;
 
     // Cast a ray from the wheel's pos straight down. Set the length to how big the wheel is. If the ray hits, the wheel is close enough to the ground to apply forces to.
     // This is so the wheel isn't applying force to the car when it's midair.
@@ -26,6 +27,7 @@ public class CarWheelController : MonoBehaviour
     {
         carRigidbody = GameObject.Find("Car").GetComponent<Rigidbody>();
         //groundLayer = LayerMask.NameToLayer("Ground");
+        restDistance = Vector3.Distance(springTop.position, transform.position);
     }
 
     private void Update()
