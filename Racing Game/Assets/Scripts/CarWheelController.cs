@@ -32,6 +32,21 @@ public class CarWheelController : MonoBehaviour
 
     private void Update()
     {
+
+        //Ray wheelRay = new(transform.position, new Vector3(transform.position.x, transform.position.y - wheelRadius, transform.position.z));
+        //if (Physics.Raycast(wheelRay, out hit, wheelRadius))
+        //{
+        //    rayHit = true;
+        //    hitDistance = hit.distance;
+        //}
+        //else
+        //    rayHit = false;
+
+        //print(name + "'s Offset: " + (restDistance - hitDistance));
+    }
+
+    private void FixedUpdate()
+    {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, wheelBottom.position, out hit, wheelRadius, groundLayer))
         {
@@ -41,18 +56,7 @@ public class CarWheelController : MonoBehaviour
         }
         else
             rayHit = false;
-        //Ray wheelRay = new(transform.position, new Vector3(transform.position.x, transform.position.y - wheelRadius, transform.position.z));
-        //if (Physics.Raycast(wheelRay, out hit, wheelRadius))
-        //{
-        //    rayHit = true;
-        //    hitDistance = hit.distance;
-        //}
-        //else
-        //    rayHit = false;
-    }
 
-    private void FixedUpdate()
-    {
         Suspension();
     }
 
@@ -62,7 +66,6 @@ public class CarWheelController : MonoBehaviour
         if(rayHit)
         {
             Vector3 springDir = transform.up;
-            //Vector3 springDir = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
             Vector3 wheelVel = carRigidbody.GetPointVelocity(transform.position);
             float offset = restDistance - hitDistance;
             float velocity = Vector3.Dot(springDir, wheelVel);
@@ -91,6 +94,9 @@ public class CarWheelController : MonoBehaviour
     {
         //Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - wheelRadius, transform.position.z));
         Gizmos.DrawLine(transform.position, wheelBottom.position);
-        //Gizmos.DrawSphere(0,0,0, 0);
+        Gizmos.DrawWireSphere(springTop.position, 0.05f);
+        //Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y + (restDistance - hitDistance), transform.position.z), 0.05f);
+        Gizmos.DrawWireSphere(transform.up * (restDistance - hitDistance), 0.05f);
+        
     }
 }
