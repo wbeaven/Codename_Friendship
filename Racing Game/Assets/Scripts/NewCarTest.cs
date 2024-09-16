@@ -18,6 +18,7 @@ public class NewCarTest : MonoBehaviour
 
     public Transform wheelVisual;
     public float visualOffset;
+    public float visualRotSpd;
 
     public float wheelMass;
     [Range (0f, 1f)]
@@ -39,7 +40,7 @@ public class NewCarTest : MonoBehaviour
         if(wheelRayHit)
         {
             Spring();
-            Steering();
+            SteeringPhysics();
         }
         
         WheelVisuals();
@@ -69,7 +70,7 @@ public class NewCarTest : MonoBehaviour
         carRb.AddForceAtPosition(springDir * force, transform.position);
     }
 
-    private void Steering()
+    private void SteeringPhysics()
     {
         Vector3 steeringDir = transform.right;
         Vector3 wheelVel = carRb.GetPointVelocity(transform.position);
@@ -80,6 +81,11 @@ public class NewCarTest : MonoBehaviour
         carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
     }
 
+    public void SteeringControls()
+    {
+        
+    }
+
     private void WheelVisuals()
     {
         if (wheelRayHit)
@@ -88,7 +94,11 @@ public class NewCarTest : MonoBehaviour
         }
         else
         {
-            wheelVisual.position = new Vector3(0, 0, 0);
+            wheelVisual.position = new Vector3(0, 0, 0);    
         }
+
+        //carRb.GetPointVelocity(transform.position).normalized
+        //if (carRb.GetPointVelocity(transform.position).)
+        //wheelVisual.Rotate(new Vector3(0, visualRotSpd * carRb.GetPointVelocity(transform.position).magnitude * Time.deltaTime, 0));
     }
 }
