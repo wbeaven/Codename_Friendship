@@ -19,6 +19,10 @@ public class NewCarTest : MonoBehaviour
     public Transform wheelVisual;
     public float visualOffset;
 
+    public float wheelMass;
+    [Range (0f, 1f)]
+    public float tyreGrip;
+
     void Start()
     {
         
@@ -35,6 +39,7 @@ public class NewCarTest : MonoBehaviour
         if(wheelRayHit)
         {
             Spring();
+            Steering();
         }
         
         WheelVisuals();
@@ -62,6 +67,17 @@ public class NewCarTest : MonoBehaviour
         force = (offset * strength) - (velocity * damping);
 
         carRb.AddForceAtPosition(springDir * force, transform.position);
+    }
+
+    private void Steering()
+    {
+        Vector3 steeringDir = transform.right;
+        Vector3 wheelVel = carRb.GetPointVelocity(transform.position);
+        float steeringVel = Vector3.Dot(steeringDir, wheelVel);
+        float targetVelChange = -steeringVel * tyreGrip;
+        float targetAccel = targetVelChange / Time.fixedDeltaTime;
+
+        carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
     }
 
     private void WheelVisuals()
