@@ -367,7 +367,9 @@ MonoBehaviour:
   force: 0
   wheelRayHit: 0
   wheelVisual: {fileID: 1710745414}
-  visualOffset: 0
+  visualOffset: 0.4
+  wheelMass: 1
+  tyreGrip: 0.5
 --- !u!1 &69019786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +1829,9 @@ MonoBehaviour:
   force: 0
   wheelRayHit: 0
   wheelVisual: {fileID: 151963254}
-  visualOffset: 0
+  visualOffset: 0.4
+  wheelMass: 1
+  tyreGrip: 0.5
 --- !u!1 &598325783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,7 +2145,9 @@ MonoBehaviour:
   force: 0
   wheelRayHit: 0
   wheelVisual: {fileID: 2010092857}
-  visualOffset: 0
+  visualOffset: 0.4
+  wheelMass: 1
+  tyreGrip: 0.5
 --- !u!1 &699005968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,7 +3538,9 @@ MonoBehaviour:
   force: 0
   wheelRayHit: 0
   wheelVisual: {fileID: 1152267439}
-  visualOffset: 0
+  visualOffset: 0.4
+  wheelMass: 1
+  tyreGrip: 0.5
 --- !u!1 &1558149535
 GameObject:
   m_ObjectHideFlags: 0
