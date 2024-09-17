@@ -95,12 +95,13 @@ public class NewCarTest : MonoBehaviour
             {
                 // turn wheels 30 degrees to the right
                 print("turning right");
+                transform.Rotate(Vector3.down, -30f);
             }
             else if (movement.x < 0)
             {
                 // turn wheels 30 degrees to the left
                 print("turning left");
-
+                transform.Rotate(Vector3.down, 30f);
             }
             
         }
