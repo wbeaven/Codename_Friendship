@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewCarTest : MonoBehaviour
 {
@@ -81,9 +82,33 @@ public class NewCarTest : MonoBehaviour
         carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
     }
 
-    public void SteeringControls()
+    public void SteeringControls(InputAction.CallbackContext context)
     {
-        
+        if (context.performed)
+        {
+            print("Controls technically working" + context.phase);
+            Vector2 movement = context.ReadValue<Vector2>();
+            print(movement.x + ", " + movement.y);
+
+
+            if (movement.x > 0)
+            {
+                // turn wheels 30 degrees to the right
+                print("turning right");
+            }
+            else if (movement.x < 0)
+            {
+                // turn wheels 30 degrees to the left
+                print("turning left");
+
+            }
+            
+        }
+        else
+        {
+            // turn wheels straight
+            print("going straight");
+        }
     }
 
     private void WheelVisuals()
