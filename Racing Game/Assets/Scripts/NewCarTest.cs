@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class NewCarTest : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class NewCarTest : MonoBehaviour
         playerInputActions = new InputSystem_Actions();
         playerInputActions.Player.Enable();
         //playerInputActions.Player.Move.performed += SteeringControls;
-        
+
     }
 
     private void FixedUpdate()
@@ -58,6 +59,7 @@ public class NewCarTest : MonoBehaviour
             SteeringPhysics();
         }
 
+        SteeringControls();
         WheelVisuals();
     }
 
@@ -96,7 +98,7 @@ public class NewCarTest : MonoBehaviour
         carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
     }
 
-    public void SteeringControls()
+    private void SteeringControls()
     {
         Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
         print(movement.x + ", " + movement.y);
@@ -107,12 +109,14 @@ public class NewCarTest : MonoBehaviour
             // turn wheels 30 degrees to the right
             print("turning right");
             transform.Rotate(Vector3.down, -30f * (Time.deltaTime * speed));
+            //Mathf.Clamp(transform.eulerAngles.y, 150f, 210f);
         }
         else if (movement.x < 0)
         {
             // turn wheels 30 degrees to the left
             print("turning left");
             transform.Rotate(Vector3.down, 30f * (Time.deltaTime * speed));
+            //Mathf.Clamp(transform.eulerAngles.y, 150f, 210f);
         }
         else
         {
@@ -131,6 +135,8 @@ public class NewCarTest : MonoBehaviour
         {
             wheelVisual.position = new Vector3(0, 0, 0);    
         }
+
+        // Some code trying to get the wheel to spin based on its speed
 
         //carRb.GetPointVelocity(transform.position).normalized
         //if (carRb.GetPointVelocity(transform.position).)
