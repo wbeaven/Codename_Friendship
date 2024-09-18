@@ -25,6 +25,10 @@ public class NewCarTest : MonoBehaviour
     [Range (0f, 1f)]
     public float tyreGrip;
 
+    private PlayerInput playerInput;
+    private InputSystem_Actions playerInputActions;
+    
+
     void Start()
     {
         
@@ -32,6 +36,16 @@ public class NewCarTest : MonoBehaviour
 
     void Update()
     {
+    }
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+
+        playerInputActions = new InputSystem_Actions();
+        playerInputActions.Player.Enable();
+        //playerInputActions.Player.Move.performed += SteeringControls;
+        
     }
 
     private void FixedUpdate()
@@ -43,7 +57,7 @@ public class NewCarTest : MonoBehaviour
             Spring();
             SteeringPhysics();
         }
-        
+
         WheelVisuals();
     }
 
@@ -82,28 +96,23 @@ public class NewCarTest : MonoBehaviour
         carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
     }
 
-    public void SteeringControls(InputAction.CallbackContext context)
+    public void SteeringControls()
     {
-        if (context.performed)
+        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
+        print(movement.x + ", " + movement.y);
+        float speed = 1f;
+
+        if (movement.x > 0)
         {
-            print("Controls technically working" + context.phase);
-            Vector2 movement = context.ReadValue<Vector2>();
-            print(movement.x + ", " + movement.y);
-
-
-            if (movement.x > 0)
-            {
-                // turn wheels 30 degrees to the right
-                print("turning right");
-                transform.Rotate(Vector3.down, -30f);
-            }
-            else if (movement.x < 0)
-            {
-                // turn wheels 30 degrees to the left
-                print("turning left");
-                transform.Rotate(Vector3.down, 30f);
-            }
-            
+            // turn wheels 30 degrees to the right
+            print("turning right");
+            transform.Rotate(Vector3.down, -30f * (Time.deltaTime * speed));
+        }
+        else if (movement.x < 0)
+        {
+            // turn wheels 30 degrees to the left
+            print("turning left");
+            transform.Rotate(Vector3.down, 30f * (Time.deltaTime * speed));
         }
         else
         {
