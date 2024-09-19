@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
@@ -28,16 +29,10 @@ public class NewCarTest : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputSystem_Actions playerInputActions;
-    
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-    }
+    public bool turnable;
+    public float rotation;
+    public float rotSpeed = 1f;
 
     private void Awake()
     {
@@ -45,8 +40,6 @@ public class NewCarTest : MonoBehaviour
 
         playerInputActions = new InputSystem_Actions();
         playerInputActions.Player.Enable();
-        //playerInputActions.Player.Move.performed += SteeringControls;
-
     }
 
     private void FixedUpdate()
@@ -59,7 +52,9 @@ public class NewCarTest : MonoBehaviour
             SteeringPhysics();
         }
 
-        SteeringControls();
+        if (turnable)
+            SteeringControls();
+
         WheelVisuals();
     }
 
@@ -101,28 +96,22 @@ public class NewCarTest : MonoBehaviour
     private void SteeringControls()
     {
         Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
-        print(movement.x + ", " + movement.y);
-        float speed = 1f;
 
         if (movement.x > 0)
         {
             // turn wheels 30 degrees to the right
-            print("turning right");
-            transform.Rotate(Vector3.down, -30f * (Time.deltaTime * speed));
-            //Mathf.Clamp(transform.eulerAngles.y, 150f, 210f);
+            rotation += rotSpeed * Time.deltaTime;
         }
         else if (movement.x < 0)
         {
             // turn wheels 30 degrees to the left
-            print("turning left");
-            transform.Rotate(Vector3.down, 30f * (Time.deltaTime * speed));
-            //Mathf.Clamp(transform.eulerAngles.y, 150f, 210f);
+            rotation -= rotSpeed * Time.deltaTime;
         }
-        else
-        {
-            // turn wheels straight
-            print("going straight");
-        }
+
+        float minRot = 0 - 30 * Mathf.Abs(movement.x);
+        float maxRot = 0 + 30 * Mathf.Abs(movement.x);
+        rotation = Mathf.Clamp(rotation, minRot, maxRot);
+        transform.localRotation = Quaternion.Euler(0, rotation, 0);
     }
 
     private void WheelVisuals()
