@@ -339,7 +339,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -0.3, z: -1}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1710745414}
@@ -368,11 +368,12 @@ MonoBehaviour:
   wheelRayHit: 0
   wheelVisual: {fileID: 1710745414}
   visualOffset: 0.4
+  visualRot: 0
   visualRotSpd: 100
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  rotation: 0
+  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -416,7 +417,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carTopSpeed: 1000
+  carSpeedMultiplier: 175
+  carTopSpeed: 100
 --- !u!1 &69019786
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,13 +776,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151963253}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.13, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 507065828}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!23 &151963255
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1878,11 +1880,12 @@ MonoBehaviour:
   wheelRayHit: 0
   wheelVisual: {fileID: 151963254}
   visualOffset: 0.4
+  visualRot: 0
   visualRotSpd: 100
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  rotation: 0
+  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -1926,7 +1929,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carTopSpeed: 1000
+  carSpeedMultiplier: 175
+  carTopSpeed: 100
 --- !u!114 &507065830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,11 +2364,12 @@ MonoBehaviour:
   wheelRayHit: 0
   wheelVisual: {fileID: 2010092857}
   visualOffset: 0.4
+  visualRot: 0
   visualRotSpd: 100
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  rotation: 0
+  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -2408,7 +2413,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carTopSpeed: 1000
+  carSpeedMultiplier: 175
+  carTopSpeed: 100
 --- !u!1 &699005968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,7 +2762,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.19509031, y: -0, z: -0, w: 0.98078537}
   m_LocalPosition: {x: 0, y: -1.01, z: 7.66}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 20, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 88779861}
@@ -3127,8 +3133,8 @@ Transform:
   m_GameObject: {fileID: 1152267438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.13, z: 0.8}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: -0.13, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1501179947}
@@ -3398,7 +3404,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 88779861}
@@ -3708,7 +3714,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.38229305, y: -0, z: -0, w: 0.9240412}
   m_LocalPosition: {x: 0, y: -0.69, z: 16.8}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 20, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 88779861}
@@ -3772,7 +3778,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -0.3, z: 1}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1152267439}
@@ -3801,11 +3807,12 @@ MonoBehaviour:
   wheelRayHit: 0
   wheelVisual: {fileID: 1152267439}
   visualOffset: 0.4
+  visualRot: 0
   visualRotSpd: 100
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  rotation: 0
+  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -3849,7 +3856,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carTopSpeed: 1000
+  carSpeedMultiplier: 175
+  carTopSpeed: 100
 --- !u!114 &1501179949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4307,7 +4315,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.13, z: 0.8}
+  m_LocalScale: {x: 0.8, y: -0.13, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 40101205}
@@ -4693,13 +4701,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010092856}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.13, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 687336182}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!23 &2010092858
 MeshRenderer:
   m_ObjectHideFlags: 0
