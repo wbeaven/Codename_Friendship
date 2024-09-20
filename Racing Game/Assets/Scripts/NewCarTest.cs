@@ -34,6 +34,9 @@ public class NewCarTest : MonoBehaviour
     public float rotation;
     public float rotSpeed = 1f;
 
+    public AnimationCurve torqueCurve;
+    public float carTopSpeed;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -50,6 +53,7 @@ public class NewCarTest : MonoBehaviour
         {
             Spring();
             SteeringPhysics();
+            Acceleration();
         }
 
         if (turnable)
@@ -91,6 +95,21 @@ public class NewCarTest : MonoBehaviour
         float targetAccel = targetVelChange / Time.fixedDeltaTime;
 
         carRb.AddForceAtPosition(steeringDir * wheelMass * targetAccel, transform.position);
+    }
+
+    private void Acceleration()
+    {
+        Vector3 accelDir = transform.forward;
+        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        if (movement.y != 0f)
+        {
+            float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+            float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
+            float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
+
+            carRb.AddForceAtPosition(accelDir * availableTorque, transform.position);
+        }
     }
 
     private void SteeringControls()

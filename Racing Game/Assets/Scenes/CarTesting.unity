@@ -372,9 +372,51 @@ MonoBehaviour:
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  baseRot: 0
   rotation: 0
-  rotSpeed: 1
+  rotSpeed: 0
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.034182694
+      outSlope: 0.034182694
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.37912577
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: -0.010946012
+      outSlope: -0.010946012
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.128624
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: 0.011603998
+      outSlope: 0.011603998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6374786
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: 0.022901759
+      outSlope: 0.022901759
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38581613
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  carTopSpeed: 1000
 --- !u!1 &69019786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,9 +1882,51 @@ MonoBehaviour:
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  baseRot: 0
   rotation: 0
   rotSpeed: 250
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.034182694
+      outSlope: 0.034182694
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.37912577
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: -0.010946012
+      outSlope: -0.010946012
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.128624
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: 0.011603998
+      outSlope: 0.011603998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6374786
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: 0.022901759
+      outSlope: 0.022901759
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38581613
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  carTopSpeed: 1000
 --- !u!114 &507065830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,9 +2364,51 @@ MonoBehaviour:
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  baseRot: 0
   rotation: 0
-  rotSpeed: 1
+  rotSpeed: 0
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.034182694
+      outSlope: 0.034182694
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.37912577
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: -0.010946012
+      outSlope: -0.010946012
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.128624
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: 0.011603998
+      outSlope: 0.011603998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6374786
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: 0.022901759
+      outSlope: 0.022901759
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38581613
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  carTopSpeed: 1000
 --- !u!1 &699005968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3679,9 +3805,51 @@ MonoBehaviour:
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  baseRot: 0
   rotation: 0
   rotSpeed: 250
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.034182694
+      outSlope: 0.034182694
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.37912577
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: -0.010946012
+      outSlope: -0.010946012
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.128624
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: 0.011603998
+      outSlope: 0.011603998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6374786
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: 0.022901759
+      outSlope: 0.022901759
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.38581613
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  carTopSpeed: 1000
 --- !u!114 &1501179949
 MonoBehaviour:
   m_ObjectHideFlags: 0
