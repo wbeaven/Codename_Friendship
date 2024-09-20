@@ -21,6 +21,7 @@ public class NewCarTest : MonoBehaviour
 
     public Transform wheelVisual;
     public float visualOffset;
+    public float visualRot;
     public float visualRotSpd;
 
     public float wheelMass;
@@ -31,10 +32,11 @@ public class NewCarTest : MonoBehaviour
     private InputSystem_Actions playerInputActions;
 
     public bool turnable;
-    public float rotation;
+    public float turnRot;
     public float rotSpeed = 1f;
 
     public AnimationCurve torqueCurve;
+    public float carSpeedMultiplier;
     public float carTopSpeed;
 
     private void Awake()
@@ -108,7 +110,8 @@ public class NewCarTest : MonoBehaviour
             float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
             float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
 
-            carRb.AddForceAtPosition(accelDir * availableTorque, transform.position);
+            carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
+            print(availableTorque * carSpeedMultiplier);
         }
     }
 
@@ -119,18 +122,18 @@ public class NewCarTest : MonoBehaviour
         if (movement.x > 0)
         {
             // turn wheels 30 degrees to the right
-            rotation += rotSpeed * Time.deltaTime;
+            turnRot += rotSpeed * Time.deltaTime;
         }
         else if (movement.x < 0)
         {
             // turn wheels 30 degrees to the left
-            rotation -= rotSpeed * Time.deltaTime;
+            turnRot -= rotSpeed * Time.deltaTime;
         }
 
         float minRot = 0 - 30 * Mathf.Abs(movement.x);
         float maxRot = 0 + 30 * Mathf.Abs(movement.x);
-        rotation = Mathf.Clamp(rotation, minRot, maxRot);
-        transform.localRotation = Quaternion.Euler(0, rotation, 0);
+        turnRot = Mathf.Clamp(turnRot, minRot, maxRot);
+        transform.localRotation = Quaternion.Euler(0, turnRot, 0);
     }
 
     private void WheelVisuals()
@@ -141,13 +144,12 @@ public class NewCarTest : MonoBehaviour
         }
         else
         {
-            wheelVisual.position = new Vector3(0, 0, 0);    
+            wheelVisual.localPosition = new Vector3(0, 0, 0);    
         }
 
-        // Some code trying to get the wheel to spin based on its speed
 
-        //carRb.GetPointVelocity(transform.position).normalized
-        //if (carRb.GetPointVelocity(transform.position).)
-        //wheelVisual.Rotate(new Vector3(0, visualRotSpd * carRb.GetPointVelocity(transform.position).magnitude * Time.deltaTime, 0));
+        visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
+        visualRot += visualRotSpd * Time.deltaTime * 10000;
+        wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 90);
     }
 }
