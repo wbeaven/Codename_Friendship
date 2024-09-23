@@ -150,6 +150,6 @@ public class NewCarTest : MonoBehaviour
 
         visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
         visualRot += visualRotSpd * Time.deltaTime * 10000;
-        wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 90);
+        wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
     }
 }
