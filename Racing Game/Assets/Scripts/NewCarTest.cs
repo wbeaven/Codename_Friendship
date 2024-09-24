@@ -1,4 +1,5 @@
 using TreeEditor;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
@@ -23,6 +24,9 @@ public class NewCarTest : MonoBehaviour
     public float visualOffset;
     public float visualRot;
     public float visualRotSpd;
+    public float visualRotMultiplier;
+    public float returnSpeed;
+    public Vector3 oldPos;
 
     public float wheelMass;
     [Range (0f, 1f)]
@@ -38,6 +42,7 @@ public class NewCarTest : MonoBehaviour
     public AnimationCurve torqueCurve;
     public float carSpeedMultiplier;
     public float carTopSpeed;
+    public bool driveWheel;
 
     private void Awake()
     {
@@ -67,7 +72,7 @@ public class NewCarTest : MonoBehaviour
 
     private void WheelRaycast()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.8f))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 0.8f))
         {
             wheelRayHit = true;
         }
@@ -101,17 +106,20 @@ public class NewCarTest : MonoBehaviour
 
     private void Acceleration()
     {
-        Vector3 accelDir = transform.forward;
-        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
-
-        if (movement.y != 0f)
+        if (driveWheel)
         {
-            float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
-            float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
-            float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
+            Vector3 accelDir = transform.forward;
+            Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
 
-            carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
-            print(availableTorque * carSpeedMultiplier);
+            if (movement.y != 0f)
+            {
+                float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+                float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
+                float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
+
+                carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
+                print(name + "available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
+            }
         }
     }
 
@@ -138,18 +146,22 @@ public class NewCarTest : MonoBehaviour
 
     private void WheelVisuals()
     {
+        Vector3 currentPos = wheelVisual.position;
+
         if (wheelRayHit)
         {
-            wheelVisual.position = new Vector3(wheelVisual.position.x, hit.point.y + visualOffset, wheelVisual.position.z);
+            wheelVisual.position = -transform.up * visualOffset + hit.point;
+        }
+        else if (!wheelRayHit && Vector3.Distance(wheelVisual.localPosition, Vector3.zero) > 0.05f)
+        {
+            Vector3 targetDir = (wheelVisual.localPosition - Vector3.zero).normalized;
+            wheelVisual.localPosition -= returnSpeed * Time.deltaTime * targetDir;
         }
         else
-        {
-            wheelVisual.localPosition = new Vector3(0, 0, 0);    
-        }
-
+            wheelVisual.localPosition = Vector3.zero;
 
         visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
-        visualRot += visualRotSpd * Time.deltaTime * 10000;
+        visualRot += visualRotSpd * Time.deltaTime * visualRotMultiplier;
         wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
     }
 }
