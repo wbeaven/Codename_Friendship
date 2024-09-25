@@ -480,7 +480,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
@@ -2891,7 +2891,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 0
@@ -3256,7 +3256,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
@@ -4641,7 +4641,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
@@ -6149,7 +6149,7 @@ MonoBehaviour:
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
@@ -6435,7 +6435,7 @@ MonoBehaviour:
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
@@ -8772,7 +8772,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
@@ -9259,7 +9259,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 1
@@ -10366,7 +10366,7 @@ MonoBehaviour:
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
@@ -10889,7 +10889,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 0
@@ -11856,7 +11856,7 @@ MonoBehaviour:
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 1
@@ -12378,7 +12378,7 @@ MonoBehaviour:
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  oldPos: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0

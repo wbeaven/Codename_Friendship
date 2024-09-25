@@ -119,7 +119,7 @@ public class NewCarTest : MonoBehaviour
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
 
                 carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
-                print(name + "available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
+                print(name + " available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
             }
         }
     }
@@ -148,7 +148,6 @@ public class NewCarTest : MonoBehaviour
     private void WheelVisuals()
     {
         Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
-
         Vector3 currentPos = wheelVisual.position;
 
         if (wheelRayHit)
@@ -163,17 +162,36 @@ public class NewCarTest : MonoBehaviour
         else
             wheelVisual.localPosition = Vector3.zero;
 
+
         visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
         visualRot += visualRotSpd * Time.deltaTime * visualRotMultiplier;
-        //if (carRb.linearVelocity. > 0)
-        //{
-        //    newRot = Quaternion.Euler(visualRot, 0, 0);
-        //}
-        //else if (movement.y < 0)
-        //{
-        //    newRot = Quaternion.Euler(-visualRot, 0, 0);
-        //}
-        //wheelVisual.localRotation = newRot;
+        if (wheelRayHit)
+        {
+            if (Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))) > 0)
+            {
+                wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
 
+            }
+            else if (Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))) < 0)
+            {
+                wheelVisual.localRotation = Quaternion.Euler(-visualRot, 0, 0);
+            }
+            else
+                wheelVisual.localRotation = Quaternion.Euler(0,0,0);
+        }
+        else
+        {
+            if (movement.y > 0)
+            {
+                wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
+
+            }
+            else if (movement.y < 0)
+            {
+                wheelVisual.localRotation = Quaternion.Euler(-visualRot, 0, 0);
+            }
+        }
+
+        print("dot product is " + Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))));
     }
 }
