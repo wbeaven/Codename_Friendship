@@ -26,7 +26,7 @@ public class NewCarTest : MonoBehaviour
     public float visualRotSpd;
     public float visualRotMultiplier;
     public float returnSpeed;
-    public Vector3 oldPos;
+    public Quaternion newRot;
 
     public float wheelMass;
     [Range (0f, 1f)]
@@ -113,6 +113,7 @@ public class NewCarTest : MonoBehaviour
 
             if (movement.y != 0f)
             {
+
                 float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
@@ -146,6 +147,8 @@ public class NewCarTest : MonoBehaviour
 
     private void WheelVisuals()
     {
+        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
+
         Vector3 currentPos = wheelVisual.position;
 
         if (wheelRayHit)
@@ -162,6 +165,15 @@ public class NewCarTest : MonoBehaviour
 
         visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
         visualRot += visualRotSpd * Time.deltaTime * visualRotMultiplier;
-        wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
+        //if (carRb.linearVelocity. > 0)
+        //{
+        //    newRot = Quaternion.Euler(visualRot, 0, 0);
+        //}
+        //else if (movement.y < 0)
+        //{
+        //    newRot = Quaternion.Euler(-visualRot, 0, 0);
+        //}
+        //wheelVisual.localRotation = newRot;
+
     }
 }
