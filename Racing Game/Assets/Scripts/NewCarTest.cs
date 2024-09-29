@@ -43,6 +43,7 @@ public class NewCarTest : MonoBehaviour
     public float carSpeedMultiplier;
     public float carTopSpeed;
     public bool driveWheel;
+    public float dragMultiplier;
 
     private void Awake()
     {
@@ -122,6 +123,9 @@ public class NewCarTest : MonoBehaviour
                 print(name + " available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
             }
         }
+
+        // Add a small counter force to slow car down when not accelerating
+        carRb.AddForceAtPosition(-carRb.linearVelocity * dragMultiplier, transform.position);
     }
 
     private void SteeringControls()
