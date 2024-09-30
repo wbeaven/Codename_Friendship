@@ -120,12 +120,16 @@ public class NewCarTest : MonoBehaviour
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
 
                 carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
+                print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement.y);
                 print(name + " available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
+            }
+            else
+            {
+                // Add a small counter force to slow car down when not accelerating
+                carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier, transform.position);
             }
         }
 
-        // Add a small counter force to slow car down when not accelerating
-        carRb.AddForceAtPosition(-carRb.linearVelocity * dragMultiplier, transform.position);
     }
 
     private void SteeringControls()
@@ -195,7 +199,5 @@ public class NewCarTest : MonoBehaviour
                 wheelVisual.localRotation = Quaternion.Euler(-visualRot, 0, 0);
             }
         }
-
-        print("dot product is " + Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))));
     }
 }
