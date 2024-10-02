@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 
-public class NewCarTest : MonoBehaviour
+public class CarController : MonoBehaviour
 {
     public Rigidbody carRb;
     public Transform wheel;
@@ -73,6 +73,7 @@ public class NewCarTest : MonoBehaviour
 
     private void WheelRaycast()
     {
+        // Fire a raycast below the wheel and return a bool if it hit ground
         if (Physics.Raycast(transform.position, -transform.up, out hit, 0.8f))
         {
             wheelRayHit = true;
@@ -107,6 +108,7 @@ public class NewCarTest : MonoBehaviour
 
     private void Acceleration()
     {
+        // Provides acceleration force if selected as a drive wheel
         if (driveWheel)
         {
             Vector3 accelDir = transform.forward;
@@ -137,7 +139,7 @@ public class NewCarTest : MonoBehaviour
             else
             {
                 // Add a small counter force to slow car down when not accelerating
-                carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier, transform.position);
+                carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier * tyreGrip, transform.position);
             }
         }
 
@@ -145,16 +147,15 @@ public class NewCarTest : MonoBehaviour
 
     private void SteeringControls()
     {
+        // Turn wheels in the same direction as the input vector
         Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
 
         if (movement.x > 0)
         {
-            // turn wheels 30 degrees to the right
             turnRot += rotSpeed * Time.deltaTime;
         }
         else if (movement.x < 0)
         {
-            // turn wheels 30 degrees to the left
             turnRot -= rotSpeed * Time.deltaTime;
         }
 

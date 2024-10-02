@@ -2945,7 +2945,7 @@ MonoBehaviour:
   decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
-  dragMultiplier: 100
+  dragMultiplier: 125
 --- !u!1 &469596785
 GameObject:
   m_ObjectHideFlags: 0
@@ -7931,7 +7931,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382351573}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18646b9f7e3ddf2489f272612deda476, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9325,7 +9325,7 @@ MonoBehaviour:
   decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
-  dragMultiplier: 100
+  dragMultiplier: 125
 --- !u!1 &1601282638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10959,7 +10959,7 @@ MonoBehaviour:
   decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
-  dragMultiplier: 100
+  dragMultiplier: 125
 --- !u!1 &1944733765
 GameObject:
   m_ObjectHideFlags: 0
@@ -11928,7 +11928,7 @@ MonoBehaviour:
   decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
-  dragMultiplier: 100
+  dragMultiplier: 125
 --- !u!1 &2035899402
 GameObject:
   m_ObjectHideFlags: 0
