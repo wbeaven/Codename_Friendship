@@ -1,4 +1,3 @@
-using TreeEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,7 +39,8 @@ public class NewCarTest : MonoBehaviour
     public float rotSpeed = 1f;
 
     public AnimationCurve torqueCurve;
-    public float carSpeedMultiplier;
+    public float accelMultiplier;
+    public float decelMultiplier;
     public float carTopSpeed;
     public bool driveWheel;
     public float dragMultiplier;
@@ -112,16 +112,27 @@ public class NewCarTest : MonoBehaviour
             Vector3 accelDir = transform.forward;
             Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
 
-            if (movement.y != 0f)
+            if (movement.y > 0f)
             {
 
                 float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
 
-                carRb.AddForceAtPosition(accelDir * availableTorque * carSpeedMultiplier, transform.position);
+                carRb.AddForceAtPosition(accelDir * availableTorque * accelMultiplier, transform.position);
                 print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement.y);
-                print(name + " available torque: " + availableTorque + ", speed multiplier: " + carSpeedMultiplier + ", available torque * speed multiplier: " + availableTorque * carSpeedMultiplier);
+                print(name + " available torque: " + availableTorque + ", speed multiplier: " + accelMultiplier + ", available torque * speed multiplier: " + availableTorque * accelMultiplier);
+            }
+            else if (movement.y < 0f)
+            {
+
+                float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+                float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
+                float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
+
+                carRb.AddForceAtPosition(accelDir * availableTorque * decelMultiplier, transform.position);
+                print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement.y);
+                print(name + " available torque: " + availableTorque + ", speed multiplier: " + decelMultiplier + ", available torque * speed multiplier: " + availableTorque * decelMultiplier);
             }
             else
             {

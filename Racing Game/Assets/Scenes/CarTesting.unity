@@ -528,7 +528,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -2940,7 +2941,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 1000
+  accelMultiplier: 1000
+  decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
   dragMultiplier: 100
@@ -3306,7 +3308,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -4692,7 +4695,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -6183,7 +6187,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -6470,7 +6475,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -8826,7 +8832,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -9314,7 +9321,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 1000
+  accelMultiplier: 1000
+  decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
   dragMultiplier: 100
@@ -10404,7 +10412,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -10946,7 +10955,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 1000
+  accelMultiplier: 1000
+  decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
   dragMultiplier: 100
@@ -11914,7 +11924,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 1000
+  accelMultiplier: 1000
+  decelMultiplier: 400
   carTopSpeed: 12
   driveWheel: 1
   dragMultiplier: 100
@@ -12419,7 +12430,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carSpeedMultiplier: 175
+  accelMultiplier: 0
+  decelMultiplier: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
