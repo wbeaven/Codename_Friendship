@@ -62,6 +62,7 @@ public class CarController : MonoBehaviour
             Spring();
             SteeringPhysics();
             Acceleration();
+            Handbrake();
         }
 
         if (turnable)
@@ -163,6 +164,23 @@ public class CarController : MonoBehaviour
         float maxRot = 0 + 30 * Mathf.Abs(movement.x);
         turnRot = Mathf.Clamp(turnRot, minRot, maxRot);
         transform.localRotation = Quaternion.Euler(0, turnRot, 0);
+    }
+
+    private void Handbrake()
+    {
+        //bool braking = playerInputActions.Player.Jump.ReadValue<bool>();
+        float braking = playerInputActions.Player.Jump.ReadValue<float>();
+
+
+        if (braking > 1)
+        {
+            // APPLY STRONG BRAKING FORCE
+            //carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier * tyreGrip, transform.position);
+        }
+        else
+        {
+            //carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier * tyreGrip, transform.position);
+        }
     }
 
     private void WheelVisuals()
