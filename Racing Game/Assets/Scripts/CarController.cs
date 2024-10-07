@@ -45,6 +45,8 @@ public class CarController : MonoBehaviour
     public bool driveWheel;
     public float dragMultiplier;
 
+    public float brakeForce;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -74,7 +76,7 @@ public class CarController : MonoBehaviour
 
     private void WheelRaycast()
     {
-        // Fire a raycast below the wheel and return a bool if it hit ground
+        // Fire a short raycast below the wheel and return a bool if it hit ground
         if (Physics.Raycast(transform.position, -transform.up, out hit, 0.8f))
         {
             wheelRayHit = true;
@@ -87,6 +89,7 @@ public class CarController : MonoBehaviour
 
     private void Spring()
     {
+        // Add a spring force to the car rigidbody at the wheel point to lift the car off the ground
         Vector3 springDir = transform.up;
         Vector3 wheelVel = carRb.GetPointVelocity(transform.position);
         offset = restDistance - hit.distance;
@@ -98,6 +101,7 @@ public class CarController : MonoBehaviour
 
     private void SteeringPhysics()
     {
+        // Add force 
         Vector3 steeringDir = transform.right;
         Vector3 wheelVel = carRb.GetPointVelocity(transform.position);
         float steeringVel = Vector3.Dot(steeringDir, wheelVel);
@@ -117,7 +121,7 @@ public class CarController : MonoBehaviour
 
             if (movement.y > 0f)
             {
-
+                // If input vector is positive, add acceleration force to the wheel based on torque and speed variables
                 float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
@@ -128,7 +132,7 @@ public class CarController : MonoBehaviour
             }
             else if (movement.y < 0f)
             {
-
+                // If input vector is negative, add deceleration force to the wheel based on torque and speed variables
                 float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement.y;
@@ -168,18 +172,12 @@ public class CarController : MonoBehaviour
 
     private void Handbrake()
     {
-        //bool braking = playerInputActions.Player.Jump.ReadValue<bool>();
         float braking = playerInputActions.Player.Jump.ReadValue<float>();
 
-
-        if (braking > 1)
+        if (braking > 0)
         {
-            // APPLY STRONG BRAKING FORCE
-            //carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier * tyreGrip, transform.position);
-        }
-        else
-        {
-            //carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * dragMultiplier * tyreGrip, transform.position);
+            // If grounded, add a braking force in the opposite direction to current velocity
+            carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * brakeForce, transform.position);
         }
     }
 
@@ -190,10 +188,12 @@ public class CarController : MonoBehaviour
 
         if (wheelRayHit)
         {
+            // If grounded, make the wheel sit on top of the surface
             wheelVisual.position = -transform.up * visualOffset + hit.point;
         }
         else if (!wheelRayHit && Vector3.Distance(wheelVisual.localPosition, Vector3.zero) > 0.05f)
         {
+            // If in the air, move the wheels position back to its resting place
             Vector3 targetDir = (wheelVisual.localPosition - Vector3.zero).normalized;
             wheelVisual.localPosition -= returnSpeed * Time.deltaTime * targetDir;
         }
@@ -205,29 +205,21 @@ public class CarController : MonoBehaviour
         visualRot += visualRotSpd * Time.deltaTime * visualRotMultiplier;
         if (wheelRayHit)
         {
+            // If grounded, spin the wheel depending on velocity direction
             if (Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))) > 0)
-            {
                 wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
-
-            }
             else if (Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))) < 0)
-            {
                 wheelVisual.localRotation = Quaternion.Euler(-visualRot, 0, 0);
-            }
             else
                 wheelVisual.localRotation = Quaternion.Euler(0,0,0);
         }
         else
         {
+            // If in the air, spin the wheel depending on player input
             if (movement.y > 0)
-            {
                 wheelVisual.localRotation = Quaternion.Euler(visualRot, 0, 0);
-
-            }
             else if (movement.y < 0)
-            {
                 wheelVisual.localRotation = Quaternion.Euler(-visualRot, 0, 0);
-            }
         }
     }
 }
