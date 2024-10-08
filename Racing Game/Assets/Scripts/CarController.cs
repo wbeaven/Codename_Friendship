@@ -129,6 +129,8 @@ public class CarController : MonoBehaviour
                 carRb.AddForceAtPosition(accelDir * availableTorque * accelMultiplier, transform.position);
                 print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement.y);
                 print(name + " available torque: " + availableTorque + ", speed multiplier: " + accelMultiplier + ", available torque * speed multiplier: " + availableTorque * accelMultiplier);
+                print(name + carRb.GetPointVelocity(transform.position).magnitude);
+                print(name + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
             }
             else if (movement.y < 0f)
             {
@@ -140,6 +142,8 @@ public class CarController : MonoBehaviour
                 carRb.AddForceAtPosition(accelDir * availableTorque * decelMultiplier, transform.position);
                 print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement.y);
                 print(name + " available torque: " + availableTorque + ", speed multiplier: " + decelMultiplier + ", available torque * speed multiplier: " + availableTorque * decelMultiplier);
+                print(name + carRb.GetPointVelocity(transform.position).magnitude);
+                print(name + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
             }
             else
             {
