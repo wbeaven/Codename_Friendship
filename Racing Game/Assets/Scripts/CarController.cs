@@ -5,47 +5,52 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
-    public Rigidbody carRb;
-    public Transform wheel;
+    [SerializeField] Rigidbody carRb;
+    private Transform wheel;
 
-    public float strength;
-    public float damping;
-    public float restDistance;
+    [SerializeField] float strength;
+    [SerializeField] float damping;
+    [SerializeField] float restDistance;
 
-    public float offset;
-    public float velocity;
-    public float force;
+    private float offset;
+    private float velocity;
+    private float force;
 
-    public RaycastHit hit;
-    public bool wheelRayHit;
+    private RaycastHit hit;
+    private bool wheelRayHit;
 
-    public Transform wheelVisual;
-    public float visualOffset;
-    public float visualRot;
-    public float visualRotSpd;
-    public float visualRotMultiplier;
-    public float returnSpeed;
-    public Quaternion newRot;
+    [Space(30)]
 
-    public float wheelMass;
+    private Transform wheelVisual;
+    [SerializeField] float visualOffset;
+    private float visualRot;
+    [SerializeField] float visualRotSpd;
+    [SerializeField] float visualRotMultiplier;
+    [SerializeField] float returnSpeed;
+
+    [SerializeField] float wheelMass;
     [Range (0f, 1f)]
-    public float tyreGrip;
+    [SerializeField] float tyreGrip;
+
+    [Space(30)]
 
     private PlayerInput playerInput;
     private InputSystem_Actions playerInputActions;
 
-    public bool turnable;
-    public float turnRot;
-    public float rotSpeed = 1f;
+    [SerializeField] bool turnable;
+    private float turnRot;
+    [SerializeField] float rotSpeed;
 
-    public AnimationCurve torqueCurve;
-    public float accelMultiplier;
-    public float decelMultiplier;
-    public float carTopSpeed;
-    public bool driveWheel;
-    public float dragMultiplier;
+    [Space(30)]
 
-    public float brakeForce;
+    [SerializeField] AnimationCurve torqueCurve;
+    [SerializeField] float accelMultiplier;
+    [SerializeField] float decelMultiplier;
+    [SerializeField] float carTopSpeed;
+    [SerializeField] bool driveWheel;
+    [SerializeField] float dragMultiplier;
+
+    [SerializeField] float brakeForce;
 
     private void Awake()
     {
@@ -53,6 +58,9 @@ public class CarController : MonoBehaviour
 
         playerInputActions = new InputSystem_Actions();
         playerInputActions.Player.Enable();
+
+        wheel = transform;
+        wheelVisual = transform.GetChild(0);
     }
 
     private void FixedUpdate()
