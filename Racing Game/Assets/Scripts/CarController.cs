@@ -19,20 +19,21 @@ public class CarController : MonoBehaviour
     private RaycastHit hit;
     private bool wheelRayHit;
 
-    [Space(30)]
-
     private Transform wheelVisual;
+
+    [Space(15)]
+
     [SerializeField] float visualOffset;
     private float visualRot;
     [SerializeField] float visualRotSpd;
     [SerializeField] float visualRotMultiplier;
     [SerializeField] float returnSpeed;
 
+    [Space(15)]
+
     [SerializeField] float wheelMass;
     [Range (0f, 1f)]
     [SerializeField] float tyreGrip;
-
-    [Space(30)]
 
     private PlayerInput playerInput;
     private InputSystem_Actions playerInputActions;
@@ -40,8 +41,6 @@ public class CarController : MonoBehaviour
     [SerializeField] bool turnable;
     private float turnRot;
     [SerializeField] float rotSpeed;
-
-    [Space(30)]
 
     [SerializeField] AnimationCurve torqueCurve;
     [SerializeField] float accelMultiplier;

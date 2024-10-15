@@ -380,25 +380,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 672791875}
-  wheel: {fileID: 40101205}
   strength: 100
   damping: 10
   restDistance: 2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 1710745414}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -1253,7 +1244,7 @@ Transform:
   m_GameObject: {fileID: 215320114}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14005025, y: -0.0000000047066213, z: 6.6572453e-10, w: 0.99014443}
-  m_LocalPosition: {x: 61.26, y: 24.707058, z: 50.10283}
+  m_LocalPosition: {x: 42.19, y: 3.317058, z: -37.897167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2223,25 +2214,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1382351575}
-  wheel: {fileID: 444654961}
   strength: 2000
   damping: 200
   restDistance: 0.7
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 364175681}
   visualOffset: -0.36
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 0
-  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -2474,25 +2456,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 672791875}
-  wheel: {fileID: 507065828}
   strength: 100
   damping: 10
   restDistance: 2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 151963254}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -3724,7 +3697,7 @@ Transform:
   m_GameObject: {fileID: 685044012}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14005023, y: -0.00000000470662, z: 6.6572053e-10, w: 0.99014443}
-  m_LocalPosition: {x: 61.26, y: 24.707058, z: 50.10283}
+  m_LocalPosition: {x: 42.19, y: 3.317058, z: -37.897167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3776,25 +3749,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 672791875}
-  wheel: {fileID: 687336182}
   strength: 100
   damping: 10
   restDistance: 2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 2010092857}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -5139,25 +5103,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 3063191396341298754}
-  wheel: {fileID: 1080943544}
   strength: 1
   damping: 0.1
   restDistance: 0.2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 8515723109508498784}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -5428,25 +5383,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 3063191396341298754}
-  wheel: {fileID: 1107692437}
   strength: 1
   damping: 0.1
   restDistance: 0.2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 4819468043430217071}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -6742,8 +6688,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382351573}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 61.26, y: 21.7, z: 60.52}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 42.19, y: 0.31, z: -27.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6753,7 +6699,7 @@ Transform:
   - {fileID: 1928959570}
   - {fileID: 444654961}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &1382351575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7503,25 +7449,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 672791875}
-  wheel: {fileID: 1501179947}
   strength: 100
   damping: 10
   restDistance: 2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 1152267439}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -7962,25 +7899,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1382351575}
-  wheel: {fileID: 1573065125}
   strength: 2000
   damping: 200
   restDistance: 0.7
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 1089853360}
   visualOffset: -0.36
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -8869,25 +8797,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 3063191396341298754}
-  wheel: {fileID: 1802705329}
   strength: 1
   damping: 0.1
   restDistance: 0.2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 5741777348631602000}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -9395,25 +9314,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1382351575}
-  wheel: {fileID: 1928959570}
   strength: 2000
   damping: 200
   restDistance: 0.7
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 985924613}
   visualOffset: -0.36
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 0
-  turnRot: 0
   rotSpeed: 0
   torqueCurve:
     serializedVersion: 2
@@ -10334,25 +10244,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1382351575}
-  wheel: {fileID: 2034796437}
   strength: 2000
   damping: 200
   restDistance: 0.7
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 1195231805}
   visualOffset: -0.36
-  visualRot: 0
   visualRotSpd: 100
   visualRotMultiplier: 750
   returnSpeed: 5
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.8
   turnable: 1
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
@@ -10859,25 +10760,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 3063191396341298754}
-  wheel: {fileID: 2089888139}
   strength: 1
   damping: 0.1
   restDistance: 0.2
-  offset: 0
-  velocity: 0
-  force: 0
-  wheelRayHit: 0
-  wheelVisual: {fileID: 4396376912959318604}
   visualOffset: 0.4
-  visualRot: 0
   visualRotSpd: 0
   visualRotMultiplier: 0
   returnSpeed: 0
-  newRot: {x: 0, y: 0, z: 0, w: 0}
   wheelMass: 1
   tyreGrip: 0.75
   turnable: 0
-  turnRot: 0
   rotSpeed: 250
   torqueCurve:
     serializedVersion: 2
