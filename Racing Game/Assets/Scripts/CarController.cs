@@ -108,7 +108,7 @@ public class CarController : MonoBehaviour
 
     private void SteeringPhysics()
     {
-        // Add force 
+        // Add force to the side of the wheel so the car doesn't like moving laterally
         Vector3 steeringDir = transform.right;
         Vector3 wheelVel = carRb.GetPointVelocity(transform.position);
         float steeringVel = Vector3.Dot(steeringDir, wheelVel);
