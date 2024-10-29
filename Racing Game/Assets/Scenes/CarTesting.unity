@@ -433,8 +433,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -1243,8 +1243,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215320114}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14005025, y: -0.0000000047066213, z: 6.6572453e-10, w: 0.99014443}
-  m_LocalPosition: {x: 42.19, y: 3.317058, z: -37.897167}
+  m_LocalRotation: {x: 0.09903044, y: -0.7001379, z: 0.099030465, w: 0.7001378}
+  m_LocalPosition: {x: 52.60717, y: 3.317058, z: -27.479998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2256,8 +2256,17 @@ MonoBehaviour:
       inWeight: 0.6374786
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.995
       value: 0.25
+      inSlope: -0.6593518
+      outSlope: -0.6593518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.022901759
       outSlope: 0.022901759
       tangentMode: 0
@@ -2267,9 +2276,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 1000
-  decelMultiplier: 400
-  carTopSpeed: 12
+  accelSpeed: 0
+  decelSpeed: 0
+  carTopSpeed: 15
   driveWheel: 1
   dragMultiplier: 125
   brakeForce: 500
@@ -2509,8 +2518,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -3470,7 +3479,7 @@ GameObject:
   - component: {fileID: 685044017}
   - component: {fileID: 685044016}
   - component: {fileID: 685044015}
-  - component: {fileID: 685044014}
+  - component: {fileID: 685044019}
   - component: {fileID: 685044013}
   m_Layer: 0
   m_Name: FreeLook Camera
@@ -3537,22 +3546,6 @@ MonoBehaviour:
         DecelTime: 0
   PlayerIndex: -1
   AutoEnableInputs: 1
---- !u!114 &685044014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685044012}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a076c17fe76165e4f8ed21498b877bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Modifiers: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &685044015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3576,7 +3569,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -3596,7 +3589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetOffset: {x: 0, y: 0, z: -0.88}
   TrackerSettings:
-    BindingMode: 4
+    BindingMode: 1
     PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
@@ -3621,9 +3614,9 @@ MonoBehaviour:
     Range: {x: -180, y: 180}
     Wrap: 1
     Recentering:
-      Enabled: 0
+      Enabled: 1
       Wait: 1
-      Time: 2
+      Time: 1
     Restrictions: 0
   VerticalAxis:
     Value: 17.5
@@ -3631,9 +3624,9 @@ MonoBehaviour:
     Range: {x: -10, y: 45}
     Wrap: 0
     Recentering:
-      Enabled: 0
+      Enabled: 1
       Wait: 1
-      Time: 2
+      Time: 1
     Restrictions: 0
   RadialAxis:
     Value: 1
@@ -3641,9 +3634,9 @@ MonoBehaviour:
     Range: {x: 1, y: 1}
     Wrap: 0
     Recentering:
-      Enabled: 0
+      Enabled: 1
       Wait: 1
-      Time: 2
+      Time: 1
     Restrictions: 0
 --- !u!114 &685044017
 MonoBehaviour:
@@ -3696,13 +3689,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685044012}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14005023, y: -0.00000000470662, z: 6.6572053e-10, w: 0.99014443}
-  m_LocalPosition: {x: 42.19, y: 3.317058, z: -37.897167}
+  m_LocalRotation: {x: 0.09903045, y: -0.7001379, z: 0.099030465, w: 0.7001378}
+  m_LocalPosition: {x: 52.60717, y: 3.317058, z: -27.479998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &685044019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685044012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7de3aefa901374ba29464584a3109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraRadius: 0.4
+  Decollision:
+    Enabled: 0
+    ObstacleLayers:
+      serializedVersion: 2
+      m_Bits: 1
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Damping: 0.5
+    SmoothingTime: 0
+  TerrainResolution:
+    Enabled: 1
+    TerrainLayers:
+      serializedVersion: 2
+      m_Bits: 1
+    MaximumRaycast: 10
+    Damping: 0.5
 --- !u!1 &687336181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,8 +3825,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -5138,8 +5161,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -5418,8 +5441,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -7502,8 +7525,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -7881,6 +7904,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75f728ae-0276-41c2-82f1-d65c358a4839
+    m_ActionName: 'Player/Accelerate[/Keyboard/s,/Keyboard/w]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -7941,8 +7968,17 @@ MonoBehaviour:
       inWeight: 0.6374786
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.995
       value: 0.25
+      inSlope: -0.6593518
+      outSlope: -0.6593518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.022901759
       outSlope: 0.022901759
       tangentMode: 0
@@ -7952,9 +7988,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 1000
-  decelMultiplier: 400
-  carTopSpeed: 12
+  accelSpeed: 0
+  decelSpeed: 0
+  carTopSpeed: 15
   driveWheel: 1
   dragMultiplier: 125
   brakeForce: 500
@@ -8832,8 +8868,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0
@@ -9356,8 +9392,17 @@ MonoBehaviour:
       inWeight: 0.6374786
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.995
       value: 0.25
+      inSlope: -0.6593518
+      outSlope: -0.6593518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.022901759
       outSlope: 0.022901759
       tangentMode: 0
@@ -9367,9 +9412,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 1000
-  decelMultiplier: 400
-  carTopSpeed: 12
+  accelSpeed: 0
+  decelSpeed: 0
+  carTopSpeed: 15
   driveWheel: 1
   dragMultiplier: 125
   brakeForce: 500
@@ -10017,8 +10062,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025195629}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17274944, y: 0, z: 0, w: 0.9849658}
-  m_LocalPosition: {x: 13.36, y: 2.782, z: -14.937}
+  m_LocalRotation: {x: 0.12215233, y: -0.69647604, z: 0.12215233, w: 0.69647604}
+  m_LocalPosition: {x: 47.44, y: 2.21, z: -27.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10286,8 +10331,17 @@ MonoBehaviour:
       inWeight: 0.6374786
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.995
       value: 0.25
+      inSlope: -0.6593518
+      outSlope: -0.6593518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
       inSlope: 0.022901759
       outSlope: 0.022901759
       tangentMode: 0
@@ -10297,9 +10351,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 1000
-  decelMultiplier: 400
-  carTopSpeed: 12
+  accelSpeed: 0
+  decelSpeed: 0
+  carTopSpeed: 15
   driveWheel: 1
   dragMultiplier: 125
   brakeForce: 500
@@ -10795,8 +10849,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelMultiplier: 0
-  decelMultiplier: 0
+  accelSpeed: 0
+  decelSpeed: 0
   carTopSpeed: 100
   driveWheel: 0
   dragMultiplier: 0

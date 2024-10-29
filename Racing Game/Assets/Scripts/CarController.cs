@@ -1,3 +1,5 @@
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,14 +45,16 @@ public class CarController : MonoBehaviour
     [SerializeField] float rotSpeed;
 
     [SerializeField] AnimationCurve torqueCurve;
-    [SerializeField] float accelMultiplier;
-    [SerializeField] float decelMultiplier;
+    [SerializeField] float accelSpeed;
+    [SerializeField] float decelSpeed;
     [SerializeField] float carTopSpeed;
     [SerializeField] bool driveWheel;
     [SerializeField] float dragMultiplier;
 
     [SerializeField] float brakeForce;
 
+    CinemachineInputAxisController controller;
+    
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -60,6 +64,8 @@ public class CarController : MonoBehaviour
 
         wheel = transform;
         wheelVisual = transform.GetChild(0);
+
+        controller = GameObject.Find("FreeLook Camera").GetComponent<CinemachineInputAxisController>();
     }
 
     private void FixedUpdate()
@@ -130,28 +136,35 @@ public class CarController : MonoBehaviour
             if (movement > 0f)
             {
                 // If input vector is positive, add acceleration force to the wheel based on torque and speed variables
-                float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+                //float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+                float carSpeed = carRb.linearVelocity.magnitude;
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement;
 
-                carRb.AddForceAtPosition(accelDir * availableTorque * accelMultiplier, transform.position);
+                carRb.AddForceAtPosition(accelDir * availableTorque * accelSpeed, transform.position);
                 print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement);
-                print(name + " available torque: " + availableTorque + ", speed multiplier: " + accelMultiplier + ", available torque * speed multiplier: " + availableTorque * accelMultiplier);
-                print(name + carRb.GetPointVelocity(transform.position).magnitude);
-                print(name + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
+                print(name + " available torque: " + availableTorque + ", acceleration speed: " + accelSpeed + ", available torque * acceleration speed: " + availableTorque * accelSpeed);
+                print(name + " - " + carRb.GetPointVelocity(transform.position).magnitude);
+                print(name + " - " + carRb.linearVelocity.magnitude);
+                print(name + " - " + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
+                print(name + " - " + Mathf.Abs(carSpeed));
+                print(name + " - " + Mathf.Abs(carSpeed) / carTopSpeed);
             }
             else if (movement < 0f)
             {
                 // If input vector is negative, add deceleration force to the wheel based on torque and speed variables
-                float carSpeed = Vector3.Dot(carRb.transform.forward, carRb.linearVelocity);
+                float carSpeed = carRb.linearVelocity.magnitude;
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / carTopSpeed);   
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement;
 
-                carRb.AddForceAtPosition(accelDir * availableTorque * decelMultiplier, transform.position);
+                carRb.AddForceAtPosition(accelDir * availableTorque * decelSpeed, transform.position);
                 print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement);
-                print(name + " available torque: " + availableTorque + ", speed multiplier: " + decelMultiplier + ", available torque * speed multiplier: " + availableTorque * decelMultiplier);
-                print(name + carRb.GetPointVelocity(transform.position).magnitude);
-                print(name + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
+                print(name + " available torque: " + availableTorque + ", deceleration speed: " + decelSpeed + ", available torque * deceleration speed: " + availableTorque * decelSpeed);
+                print(name + " - " + carRb.GetPointVelocity(transform.position).magnitude);
+                print(name + " - " + carRb.linearVelocity.magnitude);
+                print(name + " - " + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
+                print(name + " - " + Mathf.Abs(carSpeed));
+                print(name + " - " + Mathf.Abs(carSpeed) / carTopSpeed);
             }
             else
             {
