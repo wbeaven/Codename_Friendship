@@ -9,7 +9,9 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] Rigidbody carRb;
     private Transform wheel;
+    public bool grounded, turning;
 
+    [Header("Spring Settings")]
     [SerializeField] float strength;
     [SerializeField] float damping;
     [SerializeField] float restDistance;
@@ -20,59 +22,70 @@ public class CarController : MonoBehaviour
 
     private RaycastHit hit;
     private bool wheelRayHit;
+    private bool wheelVisualRayHit;
 
     private Transform wheelVisual;
 
+    //private PlayerInput playerInput;
+    //private InputAction steerAction;
+    //private InputAction accelAction;
+    //private InputAction brakeAction;
+    private PlayerInputActions playerInputActions;
+
     [Space(15)]
 
+    [Header("Wheel Visuals")]
     [SerializeField] float visualOffset;
     private float visualRot;
-    [SerializeField] float visualRotSpd;
+    private float visualRotSpd;
     [SerializeField] float visualRotMultiplier;
+    [SerializeField] float groundTouchDistance;
     [SerializeField] float returnSpeed;
 
     [Space(15)]
 
+    [Header("Wheel Settings")]
     [SerializeField] float wheelMass;
     [Range (0f, 1f)]
     [SerializeField] float tyreGrip;
-
-    private PlayerInput playerInput;
-    private InputSystem_Actions playerInputActions;
-
+    [SerializeField] bool driveWheel;
     [SerializeField] bool turnable;
     private float turnRot;
     [SerializeField] float rotSpeed;
 
+    [Header("Acceleration Settings")]
     [SerializeField] AnimationCurve torqueCurve;
     [SerializeField] float accelSpeed;
     [SerializeField] float decelSpeed;
     [SerializeField] float carTopSpeed;
-    [SerializeField] bool driveWheel;
-    [SerializeField] float dragMultiplier;
 
+    [Header("Deceleration Settings")]
+    [SerializeField] float dragMultiplier;
     [SerializeField] float brakeForce;
 
-    CinemachineInputAxisController controller;
+    //CinemachineInputAxisController controller;
     
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-
-        playerInputActions = new InputSystem_Actions();
+        //playerInput = GetComponent<PlayerInput>();
+        //steerAction = playerInput.actions["Steer"];
+        //accelAction = playerInput.actions["Accelerate"];
+        //brakeAction = playerInput.actions["Brake"];
+        playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
         wheel = transform;
         wheelVisual = transform.GetChild(0);
 
-        controller = GameObject.Find("FreeLook Camera").GetComponent<CinemachineInputAxisController>();
+        //controller = GameObject.Find("FreeLook Camera").GetComponent<CinemachineInputAxisController>();
     }
 
     private void FixedUpdate()
     {
         WheelRaycast();
+        WheelVisualRaycast();
 
-        if(wheelRayHit)
+        if (wheelRayHit)
         {
             Spring();
             SteeringPhysics();
@@ -90,13 +103,27 @@ public class CarController : MonoBehaviour
     private void WheelRaycast()
     {
         // Fire a short raycast below the wheel and return a bool if it hit ground
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 0.8f))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, groundTouchDistance))
         {
             wheelRayHit = true;
+            grounded = true;
         }
         else
         {
             wheelRayHit = false;
+            grounded = false;
+        }
+    }
+    private void WheelVisualRaycast()
+    {
+        // Fire a short raycast below the wheel and return a bool if it hit ground
+        if (Physics.Raycast(transform.position, -transform.up, out hit, groundTouchDistance + 0.1f))
+        {
+            wheelVisualRayHit = true;
+        }
+        else
+        {
+            wheelVisualRayHit = false;
         }
     }
 
@@ -142,13 +169,6 @@ public class CarController : MonoBehaviour
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement;
 
                 carRb.AddForceAtPosition(accelDir * availableTorque * accelSpeed, transform.position);
-                print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement);
-                print(name + " available torque: " + availableTorque + ", acceleration speed: " + accelSpeed + ", available torque * acceleration speed: " + availableTorque * accelSpeed);
-                print(name + " - " + carRb.GetPointVelocity(transform.position).magnitude);
-                print(name + " - " + carRb.linearVelocity.magnitude);
-                print(name + " - " + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
-                print(name + " - " + Mathf.Abs(carSpeed));
-                print(name + " - " + Mathf.Abs(carSpeed) / carTopSpeed);
             }
             else if (movement < 0f)
             {
@@ -158,13 +178,6 @@ public class CarController : MonoBehaviour
                 float availableTorque = torqueCurve.Evaluate(normalizedSpeed) * movement;
 
                 carRb.AddForceAtPosition(accelDir * availableTorque * decelSpeed, transform.position);
-                print(name + " normalized speed: " + normalizedSpeed + ", movement: " + movement);
-                print(name + " available torque: " + availableTorque + ", deceleration speed: " + decelSpeed + ", available torque * deceleration speed: " + availableTorque * decelSpeed);
-                print(name + " - " + carRb.GetPointVelocity(transform.position).magnitude);
-                print(name + " - " + carRb.linearVelocity.magnitude);
-                print(name + " - " + Vector3.Dot(carRb.transform.forward, carRb.linearVelocity));
-                print(name + " - " + Mathf.Abs(carSpeed));
-                print(name + " - " + Mathf.Abs(carSpeed) / carTopSpeed);
             }
             else
             {
@@ -178,15 +191,21 @@ public class CarController : MonoBehaviour
     private void SteeringControls()
     {
         // Turn wheels in the same direction as the input vector
-        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
+        Vector2 movement = playerInputActions.Player.Steer.ReadValue<Vector2>();
 
         if (movement.x > 0)
         {
             turnRot += rotSpeed * Time.deltaTime;
+            turning = true;
         }
         else if (movement.x < 0)
         {
             turnRot -= rotSpeed * Time.deltaTime;
+            turning = true;
+        }
+        else
+        {
+            turning = false;
         }
 
         float minRot = 0 - 30 * Mathf.Abs(movement.x);
@@ -197,7 +216,7 @@ public class CarController : MonoBehaviour
 
     private void Handbrake()
     {
-        float braking = playerInputActions.Player.Jump.ReadValue<float>();
+        float braking = playerInputActions.Player.Brake.ReadValue<float>();
 
         if (braking > 0)
         {
@@ -208,15 +227,15 @@ public class CarController : MonoBehaviour
 
     private void WheelVisuals()
     {
-        Vector2 movement = playerInputActions.Player.Move.ReadValue<Vector2>();
+        Vector2 movement = playerInputActions.Player.Steer.ReadValue<Vector2>();
         Vector3 currentPos = wheelVisual.position;
 
-        if (wheelRayHit)
+        if (wheelVisualRayHit)
         {
             // If grounded, make the wheel sit on top of the surface
             wheelVisual.position = -transform.up * visualOffset + hit.point;
         }
-        else if (!wheelRayHit && Vector3.Distance(wheelVisual.localPosition, Vector3.zero) > 0.05f)
+        else if (!wheelVisualRayHit && Vector3.Distance(wheelVisual.localPosition, Vector3.zero) > 0.05f)
         {
             // If in the air, move the wheels position back to its resting place
             Vector3 targetDir = (wheelVisual.localPosition - Vector3.zero).normalized;
@@ -228,7 +247,7 @@ public class CarController : MonoBehaviour
 
         visualRotSpd = carRb.GetPointVelocity(transform.position).magnitude / carTopSpeed;
         visualRot += visualRotSpd * Time.deltaTime * visualRotMultiplier;
-        if (wheelRayHit)
+        if (wheelVisualRayHit)
         {
             // If grounded, spin the wheel depending on velocity direction
             if (Vector3.Dot(transform.forward, Vector3.Normalize(carRb.GetPointVelocity(transform.position))) > 0)
