@@ -1,9 +1,4 @@
-using Unity.Cinemachine;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
