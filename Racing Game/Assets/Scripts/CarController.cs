@@ -43,6 +43,7 @@ public class CarController : MonoBehaviour
     [SerializeField] float wheelMass;
     [Range (0f, 1f)]
     [SerializeField] float tyreGrip;
+    private float originalGrip;
     [SerializeField] bool driveWheel;
     [SerializeField] bool turnable;
     private float turnRot;
@@ -71,6 +72,8 @@ public class CarController : MonoBehaviour
 
         wheel = transform;
         wheelVisual = transform.GetChild(0);
+
+        originalGrip = tyreGrip;
 
         //controller = GameObject.Find("FreeLook Camera").GetComponent<CinemachineInputAxisController>();
     }
@@ -212,12 +215,16 @@ public class CarController : MonoBehaviour
     private void Handbrake()
     {
         float braking = playerInputActions.Player.Brake.ReadValue<float>();
+        float brakeGrip = tyreGrip / 4f;
 
         if (braking > 0)
         {
             // If grounded, add a braking force in the opposite direction to current velocity
             carRb.AddForceAtPosition(Vector3.Normalize(-carRb.GetPointVelocity(transform.position)) * brakeForce, transform.position);
+            tyreGrip = 0.2f;
         }
+        else
+            tyreGrip = originalGrip;
     }
 
     private void WheelVisuals()

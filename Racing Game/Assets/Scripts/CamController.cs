@@ -7,8 +7,11 @@ public class CamController : MonoBehaviour
     [SerializeField] Transform carTarget;
 
     [Header("Camera Settings")]
-    [SerializeField] Vector3 offset = new Vector3(0, 3, -6);
+    public Vector3 offset = new Vector3(0, 3, -6);
+    [SerializeField] Vector3 targetOffset = new Vector3(0, 1.5f, 0);
     [SerializeField] float followSpeed = 10f;
+    [SerializeField] float maxDistance = 10f;
+    [SerializeField] float minHeight = 2f;
 
     [Header("Turn Speeds")]
     [SerializeField] float sideTurnSpeed = 180f;
@@ -47,12 +50,26 @@ public class CamController : MonoBehaviour
     {
         currentYaw = Mathf.MoveTowardsAngle(currentYaw, targetYaw, currentTurnSpeed * Time.deltaTime);
         Quaternion rotation = Quaternion.Euler(0, currentYaw, 0);
-        Vector3 rotatedOffset = rotation * offset;
 
+        Vector3 rotatedOffset = rotation * offset;
         Vector3 desiredPosition = carTarget.position + rotatedOffset;
+
+        // Smooth follow
         transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
 
-        transform.LookAt(carTarget.position + Vector3.up * 1.5f);
+        // Distance clamp
+        Vector3 dir = transform.position - carTarget.position;
+        dir = Vector3.ClampMagnitude(dir, maxDistance);
+        transform.position = carTarget.position + dir;
+
+        // Height clamp to prevent camera going too low
+        float minCameraHeight = carTarget.position.y + minHeight;
+        if (transform.position.y < minHeight)
+        {
+            transform.position = new Vector3(transform.position.x, minCameraHeight, transform.position.z);
+        }
+
+        transform.LookAt(carTarget.position + targetOffset);
     }
 
     private void HandleLookInput()
