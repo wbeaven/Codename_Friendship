@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class AIRacerController : MonoBehaviour
 {
+    [SerializeField] Transform splineFollower;
     [SerializeField] float maxSteeringAngle = 45f;
-    private Transform[] checkpoints;
-    private Transform currentCheckpoint;
-    private int currentCheckpointIndex;
+    //private Transform[] checkpoints;
+    //private Transform currentCheckpoint;
+    //private int currentCheckpointIndex;
 
     private void Start()
     {
-        checkpoints = CheckpointController.originalCheckpoints;
-        currentCheckpointIndex = 0;
-        currentCheckpoint = checkpoints[currentCheckpointIndex];
+        //checkpoints = CheckpointController.originalCheckpoints;
+        //currentCheckpointIndex = 0;
+        //currentCheckpoint = checkpoints[currentCheckpointIndex];
     }
 
     private float GetSignedAngleToTarget(Transform target)
@@ -25,8 +26,8 @@ public class AIRacerController : MonoBehaviour
         // Calculate signed angle between forward and target direction
         float angle = Vector3.SignedAngle(forward, targetDir, Vector3.up);
 
-        print(angle);
-        Debug.DrawRay(transform.position, transform.forward * 50);
+        //print(angle);
+        //Debug.DrawRay(transform.position, transform.forward * 50);
         return angle; // Positive = turn left, Negative = turn right (around Y)
     }
 
@@ -37,7 +38,7 @@ public class AIRacerController : MonoBehaviour
         //else if (GetSignedAngleToTarget(currentCheckpoint) < 10)
         //    return -1f;
         //else return 0f;
-        float angle = GetSignedAngleToTarget(currentCheckpoint);
+        float angle = GetSignedAngleToTarget(splineFollower);
 
         // Use a proportional response, clamped to -1 to 1
         float steering = Mathf.Clamp(angle / maxSteeringAngle, -1f, 1f);
@@ -45,16 +46,16 @@ public class AIRacerController : MonoBehaviour
         return steering;
     }
 
-    public void NextCheckpoint()
-    {
-        if (currentCheckpointIndex + 1 < checkpoints.Length)
-        {
-            currentCheckpointIndex++;
-            currentCheckpoint = checkpoints[currentCheckpointIndex];
-        }
-        else
-        {
-            currentCheckpointIndex = 0;
-        }
-    }
+    //public void NextCheckpoint()
+    //{
+    //    if (currentCheckpointIndex + 1 < checkpoints.Length)
+    //    {
+    //        currentCheckpointIndex++;
+    //        currentCheckpoint = checkpoints[currentCheckpointIndex];
+    //    }
+    //    else
+    //    {
+    //        currentCheckpointIndex = 0;
+    //    }
+    //}
 }
